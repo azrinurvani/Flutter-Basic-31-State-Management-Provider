@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../screens/product_detail_screen.dart';
 
+//TODO - Step 4 - Buat lah UI untuk menampilkan List dari Product menggunakan GridTile
 class ProductItem extends StatelessWidget {
   final String id;
   final String title;
@@ -14,6 +15,25 @@ class ProductItem extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
+        footer: GridTileBar(
+          backgroundColor: Colors.black87,
+          leading: IconButton(
+            icon: const Icon(Icons.favorite_border_outlined),
+            color: Theme.of(context).colorScheme.secondary,
+            onPressed: () {},
+          ),
+          title: Text(
+            title,
+            textAlign: TextAlign.center,
+          ),
+          trailing: IconButton(
+            icon: const Icon(
+              Icons.shopping_cart,
+            ),
+            onPressed: () {},
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+        ),
         child: GestureDetector(
           onTap: () {
             Navigator.of(context).pushNamed(
@@ -24,25 +44,6 @@ class ProductItem extends StatelessWidget {
           child: Image.network(
             imageUrl,
             fit: BoxFit.cover,
-          ),
-        ),
-        footer: GridTileBar(
-          backgroundColor: Colors.black87,
-          leading: IconButton(
-            icon: Icon(Icons.favorite_border_outlined),
-            color: Theme.of(context).colorScheme.secondary,
-            onPressed: () {},
-          ),
-          title: Text(
-            title,
-            textAlign: TextAlign.center,
-          ),
-          trailing: IconButton(
-            icon: Icon(
-              Icons.shopping_cart,
-            ),
-            onPressed: () {},
-            color: Theme.of(context).colorScheme.secondary,
           ),
         ),
       ),

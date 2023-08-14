@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+//TODO - Step 1 - Buat lah data class/model (Product)
 class Product {
   final String? id;
   final String? title;
