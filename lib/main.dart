@@ -37,3 +37,36 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+//contoh penggunakan spread collection [...list]
+class ScreenSpreadListExample extends StatelessWidget {
+  ScreenSpreadListExample({super.key});
+
+  List<Text> myList = List.generate(
+    25,
+    (index) => Text(
+      "${index + 1}",
+      style: const TextStyle(
+        fontSize: 35,
+      ),
+    ),
+  );
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Spread Collection Example"),
+      ),
+      body: ListView(
+        children: [
+          Container(
+            width: 100,
+            height: 100,
+            color: Colors.amber,
+          ),
+          ...myList,
+        ],
+      ),
+    );
+  }
+}
