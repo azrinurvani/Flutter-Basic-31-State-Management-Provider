@@ -21,7 +21,7 @@ class Product with ChangeNotifier {
 
   //TODO - Step 10 - Buat method untuk merubah status favourite
   void setStatus() {
-    this.isFavorite = !this.isFavorite;
+    isFavorite = !isFavorite;
     notifyListeners(); //merubah data ke UI, berasa statefull
   }
 }
