@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_basic_31_state_provider/providers/all_products.dart';
+import 'package:flutter_basic_31_state_provider/providers/cart.dart';
+import 'package:flutter_basic_31_state_provider/screens/cart_screen.dart';
 import 'package:provider/provider.dart';
 
 import './screens/products_overview_screen.dart';
@@ -17,8 +19,18 @@ class MyApp extends StatelessWidget {
     //Todo - Step 3 - Widget/UI yang menggunakan Provider mesti dibungkus dengan ChangeNotifierProvider
     // pada kondisi ini Widget/UI yang memerlukan data (product) adalah
     // List Product (ProductsOverviewScreen) dan Product Detail (ProductDetailScreen)
-    return ChangeNotifierProvider(
-      create: (context) => Products(),
+
+    //TODO - Step 16 - Ganti ChangeNotifierProvider dengan MultiProvider karena menggunakan lebih dari satu provider
+    //yaitu Cart dan Product
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => Cart(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => Products(),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'MyShop',
@@ -32,6 +44,8 @@ class MyApp extends StatelessWidget {
         home: const ProductsOverviewScreen(),
         routes: {
           ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
+          //TODO - Step 23 - Daftarkan routing untuk navigate ke CartScreen
+          CartScreen.routeName: (ctx) => CartScreen()
         },
       ),
     );

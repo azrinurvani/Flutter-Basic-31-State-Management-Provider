@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_basic_31_state_provider/providers/cart.dart';
 import 'package:flutter_basic_31_state_provider/providers/product.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,9 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     //listen set false agar tidak membuang memory lebih banyak
     final productData = Provider.of<Product>(context, listen: false);
+
+    //TODO - Step 17 - Initiate provider cart
+    final cart = Provider.of<Cart>(context, listen: false);
     print("Widget Rebuild");
 
     return ClipRRect(
@@ -47,7 +51,22 @@ class ProductItem extends StatelessWidget {
             icon: const Icon(
               Icons.shopping_cart,
             ),
-            onPressed: () {},
+            onPressed: () {
+              //TODO - Step 18 - Tambahkan action snackbar jika icon keranjang di klik dan tambahkan ke cart listener
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Added to cart"),
+                  duration: Duration(
+                    milliseconds: 500,
+                  ),
+                ),
+              );
+              cart.addCart(
+                productData.id,
+                productData.title,
+                productData.price,
+              );
+            },
             color: Theme.of(context).colorScheme.secondary,
           ),
         ),
